@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <title>Portfolio Admin | Md Feroj Hossain</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="../config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="admin.js"></script>
+</head>
+<body>
+  <main class="admin-shell">
+    <section id="login-panel" class="login-card">
+      <div class="admin-mark">F</div>
+      <p class="eyebrow">PRIVATE DASHBOARD</p>
+      <h1>Portfolio Admin</h1>
+      <p class="muted">Sign in with the admin account created in Supabase Authentication.</p>
+      <form id="login-form">
+        <label>Email<input id="login-email" type="email" autocomplete="username" required placeholder="admin@example.com"></label>
+        <label>Password<input id="login-password" type="password" autocomplete="current-password" required></label>
+        <button class="primary-button" type="submit">Sign in</button>
+        <p class="form-message" id="login-message" role="status"></p>
+      </form>
+      <a class="back-link" href="../index.html">← View public website</a>
+    </section>
+
+    <section id="dashboard" hidden>
+      <header class="topbar">
+        <div><p class="eyebrow">CONTENT MANAGEMENT</p><h1>Portfolio Dashboard</h1><p class="muted" id="admin-user"></p></div>
+        <div class="top-actions"><span id="save-status" class="status">All changes saved</span><button id="logout-button" class="secondary-button">Sign out</button></div>
+      </header>
+      <div class="notice" id="notice">Changes are local until you select Save & Publish.</div>
+      <nav class="tabs" aria-label="Admin tabs">
+        <button class="tab active" data-tab="site">Site</button>
+        <button class="tab" data-tab="theme">Theme</button>
+        <button class="tab" data-tab="sections">Sections</button>
+        <button class="tab" data-tab="media">Media</button>
+        <button class="tab" data-tab="backup">Backup</button>
+      </nav>
+
+      <section class="tab-panel active" id="tab-site">
+        <div class="panel-heading"><div><h2>Site content</h2><p class="muted">Update your introduction and portfolio details.</p></div></div>
+        <div class="form-grid">
+          <label>Full name<input data-path="profile.name"></label>
+          <label>Professional identity<input data-path="profile.identity"></label>
+          <label>Email<input data-path="profile.email" type="email"></label>
+          <label>Phone<input data-path="profile.phone"></label>
+          <label>Location<input data-path="profile.location"></label>
+          <label>Logo / brand text<input data-path="site.logoText"></label>
+          <label class="wide">Hero eyebrow<input data-path="site.heroEyebrow"></label>
+          <label class="wide">Hero title<input data-path="site.heroTitle"></label>
+          <label class="wide">Hero role<input data-path="site.heroRole"></label>
+          <label class="wide">Hero description<textarea data-path="site.heroDescription" rows="2"></textarea></label>
+          <label class="wide">About me<textarea data-path="profile.bio" rows="5"></textarea></label>
+          <label>Facebook URL<input data-path="profile.socials.facebook" placeholder="https://..."></label>
+          <label>LinkedIn URL<input data-path="profile.socials.linkedin" placeholder="https://..."></label>
+          <label>GitHub URL<input data-path="profile.socials.github" placeholder="https://..."></label>
+          <label>Instagram URL<input data-path="profile.socials.instagram" placeholder="https://..."></label>
+        </div>
+        <div class="subsection"><h3>Education</h3><div id="education-editor" class="repeat-list"></div><button class="add-button" data-add="education">+ Add education</button></div>
+        <div class="subsection"><h3>Skills</h3><div id="skills-editor" class="repeat-list"></div><button class="add-button" data-add="skills">+ Add skill</button></div>
+        <div class="subsection"><h3>Projects</h3><div id="projects-editor" class="repeat-list"></div><button class="add-button" data-add="projects">+ Add project</button></div>
+        <div class="subsection"><h3>Experience & volunteering</h3><div id="experience-editor" class="repeat-list"></div><button class="add-button" data-add="experience">+ Add experience</button></div>
+        <div class="subsection"><h3>Certificates</h3><div id="certificates-editor" class="repeat-list"></div><button class="add-button" data-add="certificates">+ Add certificate</button></div>
+        <div class="subsection"><h3>Research</h3><div id="research-editor" class="repeat-list"></div><button class="add-button" data-add="research">+ Add research item</button></div>
+      </section>
+
+      <section class="tab-panel" id="tab-theme">
+        <div class="panel-heading"><div><h2>Theme & appearance</h2><p class="muted">Adjust colours, typography and hero background.</p></div></div>
+        <div class="form-grid">
+          <label>Primary colour<input data-path="theme.primary" type="color"></label>
+          <label>Secondary colour<input data-path="theme.secondary" type="color"></label>
+          <label>Accent colour<input data-path="theme.accent" type="color"></label>
+          <label>Font<select data-path="theme.font"><option>Modern Sans-serif</option><option>Arial, sans-serif</option><option>Georgia, serif</option></select></label>
+          <label>Default mode<select data-path="theme.mode"><option value="system">System preference</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+          <label class="wide">Hero background CSS<input data-path="theme.heroBackground" placeholder="linear-gradient(...)"></label>
+          <label>Hero brightness <output id="brightness-value">1.00</output><input data-path="theme.heroBrightness" type="range" min="0.4" max="1.5" step="0.05"></label>
+          <label>Overlay transparency <output id="overlay-value">0.12</output><input data-path="theme.heroOverlay" type="range" min="0" max="0.8" step="0.02"></label>
+        </div>
+        <p class="help">Use a CSS colour or gradient for the hero background. A gradient is recommended for this design.</p>
+      </section>
+
+      <section class="tab-panel" id="tab-sections">
+        <div class="panel-heading"><div><h2>Sections</h2><p class="muted">Drag rows to reorder. Toggle visibility or add a supported section.</p></div></div>
+        <div id="sections-editor" class="sections-editor"></div>
+        <div class="inline-add"><input id="new-section-title" placeholder="New section title"><select id="new-section-type"><option value="about">About</option><option value="education">Education</option><option value="skills">Skills</option><option value="projects">Projects</option><option value="experience">Experience</option><option value="certificates">Certificates</option><option value="research">Research</option><option value="contact">Contact</option></select><button id="add-section" class="add-button">Add section</button></div>
+      </section>
+
+      <section class="tab-panel" id="tab-media">
+        <div class="panel-heading"><div><h2>Media library</h2><p class="muted">Upload media to the public portfolio-media bucket.</p></div></div>
+        <div class="media-grid">
+          <div class="media-card"><h3>Profile photo</h3><img id="profile-preview" src="../assets/profile-placeholder.svg" alt="Profile preview"><input id="profile-upload" type="file" accept="image/*"><button class="secondary-button" data-upload="profile">Upload profile photo</button></div>
+          <div class="media-card"><h3>Logo</h3><img id="logo-preview" src="../assets/favicon.svg" alt="Logo preview"><input id="logo-upload" type="file" accept="image/*"><button class="secondary-button" data-upload="logo">Upload logo</button></div>
+          <div class="media-card"><h3>CV / Resume</h3><p id="cv-status" class="muted">No CV uploaded</p><input id="cv-upload" type="file" accept=".pdf,application/pdf"><button class="secondary-button" data-upload="cv">Upload CV PDF</button></div>
+          <div class="media-card"><h3>Hero background image</h3><p class="muted">Upload an image, then use its public URL as a CSS background in Theme.</p><input id="background-upload" type="file" accept="image/*"><button class="secondary-button" data-upload="background">Upload background</button><input id="background-url" readonly placeholder="Uploaded public URL"></div>
+        </div>
+        <p class="help">Each project has its own image upload button in the Projects editor under Site. Uploaded files are public because the bucket is public.</p>
+      </section>
+
+      <section class="tab-panel" id="tab-backup">
+        <div class="panel-heading"><div><h2>Backup & restore</h2><p class="muted">Export a copy of your content or import a previous JSON backup.</p></div></div>
+        <div class="backup-card"><h3>Export backup</h3><p class="muted">Download the current editor content as a JSON file.</p><button id="export-button" class="primary-button">Download JSON backup</button></div>
+        <div class="backup-card"><h3>Import backup</h3><p class="muted">Import replaces the current unsaved editor content. Review it before publishing.</p><input id="import-file" type="file" accept="application/json,.json"><button id="import-button" class="secondary-button">Import JSON file</button></div>
+      </section>
+      <footer class="dashboard-footer"><span id="footer-message">Remember to publish your changes.</span><button id="publish-button" class="primary-button">Save & Publish</button></footer>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
