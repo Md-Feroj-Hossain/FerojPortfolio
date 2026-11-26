@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Md Feroj Hossain, Electrical and Electronic Engineering student.">
+  <meta name="theme-color" content="#2563eb">
+  <title>Md Feroj Hossain | EEE Student</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Md Feroj Hossain home"><img id="brand-logo" class="brand-image" src="assets/favicon.svg" alt="" hidden><span class="brand-mark" id="brand-mark">F</span><span id="brand-name">Md Feroj Hossain</span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav id="main-nav" aria-label="Main navigation"><ul id="nav-list"></ul></nav>
+      <button class="mode-toggle" id="mode-toggle" type="button" aria-label="Toggle color mode">☼</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section" id="home">
+      <div class="hero-bg" id="hero-bg"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" id="hero-eyebrow">ELECTRICAL & ELECTRONIC ENGINEERING</p>
+          <h1 id="hero-title">Hello, I'm <span>Md Feroj Hossain</span>.</h1>
+          <p class="hero-role" id="hero-role">EEE Student & Aspiring Engineer</p>
+          <p class="hero-description" id="hero-description">I am passionate about engineering, technology, programming and innovation.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">Explore my work</a>
+            <a class="button button-ghost" href="#contact">Get in touch</a>
+          </div>
+          <div class="hero-meta"><span>📍 <span id="hero-location">Pabna, Bangladesh</span></span><span>🎓 7th Semester · EEE</span></div>
+        </div>
+        <div class="hero-visual">
+          <div class="photo-frame"><img id="profile-image" src="assets/profile-placeholder.svg" alt="Profile placeholder" data-fallback="assets/profile-placeholder.svg"></div>
+          <div class="floating-chip chip-one">⚡ Engineering</div>
+          <div class="floating-chip chip-two">⌘ Technology</div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about" aria-label="Scroll to About">↓</a>
+    </section>
+
+    <div id="sections-root">
+      <section class="section" id="about" data-section="about"><div class="container">
+        <div class="section-heading"><p class="eyebrow">A LITTLE INTRODUCTION</p><h2>About <span>Me</span></h2></div>
+        <div class="about-card"><p id="about-text">I am an enthusiastic Electrical and Electronic Engineering student at Jamalpur Science and Technology University. I am passionate about electrical engineering, modern technology, programming and innovation. I enjoy developing practical engineering projects and continuously improving my technical skills to solve real-world problems.</p></div>
+      </div></section>
+
+      <section class="section section-muted" id="education" data-section="education"><div class="container">
+        <div class="section-heading"><p class="eyebrow">MY ACADEMIC JOURNEY</p><h2>Education</h2></div>
+        <div class="timeline" id="education-list"></div>
+      </div></section>
+
+      <section class="section" id="skills" data-section="skills"><div class="container">
+        <div class="section-heading"><p class="eyebrow">WHAT I WORK WITH</p><h2>Technical <span>Skills</span></h2></div>
+        <div class="skill-grid" id="skills-list"></div>
+      </div></section>
+
+      <section class="section section-muted" id="projects" data-section="projects"><div class="container">
+        <div class="section-heading"><p class="eyebrow">SELECTED WORK</p><h2>My <span>Projects</span></h2></div>
+        <div class="project-grid" id="projects-list"></div>
+      </div></section>
+
+      <section class="section" id="experience" data-section="experience"><div class="container">
+        <div class="section-heading"><p class="eyebrow">BEYOND THE CLASSROOM</p><h2>Experience & <span>Volunteering</span></h2></div>
+        <div class="experience-card" id="experience-list"></div>
+      </div></section>
+
+      <section class="section section-muted" id="certificates" data-section="certificates"><div class="container">
+        <div class="section-heading"><p class="eyebrow">LEARNING & DEVELOPMENT</p><h2>Certificates</h2></div>
+        <div class="simple-grid" id="certificates-list"><p class="empty-state">Certificates can be added from the admin panel.</p></div>
+      </div></section>
+
+      <section class="section" id="research" data-section="research"><div class="container">
+        <div class="section-heading"><p class="eyebrow">ACADEMIC INTERESTS</p><h2>Research & <span>Publications</span></h2></div>
+        <div class="simple-grid" id="research-list"><p class="empty-state">Research details can be added from the admin panel.</p></div>
+      </div></section>
+
+      <section class="section contact-section" id="contact" data-section="contact"><div class="container">
+        <div class="section-heading"><p class="eyebrow">LET'S CONNECT</p><h2>Contact <span>Me</span></h2><p>Have a question or an opportunity to discuss? Feel free to reach out.</p></div>
+        <div class="contact-card">
+          <a id="contact-email" href="mailto:feroj8954@gmail">✉ <span>feroj8954@gmail</span></a>
+          <p id="contact-location">Pabna, Bangladesh</p>
+          <div class="social-links" id="social-links"></div>
+        </div>
+      </div></section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><p>© <span id="year"></span> <span id="footer-name">Md Feroj Hossain</span>. Built with care.</p><a href="#home">Back to top ↑</a></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
